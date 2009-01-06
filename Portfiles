@@ -1,21 +1,23 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
 # $Id$
+
 PortSystem          1.0
 
 name                shoes
-version             1.2.23
-categories          net
-maintainers         christianbryan@gmail.com
-description         A tiny toolkit.
-long_description    Fun Ruby GUI toolkit.
+version             2.0
+categories          ruby
+maintainers         gmail.com:christianbryan
+description         Shoes is a tiny graphics toolkit, designed for beginners.
+long_description    Shoes is a tiny graphics toolkit, designed for beginners.
 homepage            http://shoooes.net
 platforms           darwin
-master_sites        
-
-checksums
-
-depends_lib
-
+master_sites        http://shoooes.net/dist/
+distfiles           shoes2.tar.gz
+checksums           md5 01869b5a950551a9f971edf933ca2586
+depends_lib         glib2-devel \
+                    libungif \
+                    cairo \
+                    pango \
+                    ruby rb-rubygems
 configure.args
-
 os.arch             intel

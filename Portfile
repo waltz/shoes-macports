@@ -17,6 +17,7 @@ git.branch          217b854b6def4702be2e84ec07ac53f51ec3654b
 checksums           md5 826433cdeb80133899bbb694f7aded8a
 depends_lib         port:glib2-devel \
                     port:libungif \
+                    port:jpeg \
                     port:cairo \
                     port:pango \
                     port:ruby \
@@ -29,7 +30,15 @@ build.target        {}
 # destroot {
 #   file copy Shoes.app ${destroot}
 # }
-destroot.cmd        "cp -Rf Shoes.app/ ${destroot}/Applications/Shoes-MacPorts.app"
+destroot.cmd        "cp -Rf Shoes.app/ ${destroot}/Applications/Shoes.app"
 destroot.target     
-destroot.destdir       
+destroot.destdir
+post-destroot {
+  # system "cp -Rf ./${worksrcdir}/Shoes.app ${destroot}/Applications/"
+  system "cp /opt/local/etc/pango/pango.modules ${destroot}/Applications/Shoes.app/Contents/MacOS/"
+}
+post-activate {
+  # system "cp -f /opt/local/etc/pango/pango.modules /Applications/Shoes.app/Contents/MacOS/" 
+  system "chmod -R g+rw /Applications/Shoes.app/"
+}       
 universal_variant   no

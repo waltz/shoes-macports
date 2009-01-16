@@ -9,8 +9,6 @@ description         A tiny graphics toolkit, designed for beginners.
 long_description    A tiny graphics toolkit, designed for beginners.
 homepage            http://shoooes.net
 platforms           darwin
-# master_sites        http://hacketyhack.net/pkg/dist/shoes/
-# distfiles           shoes-0.r1134.tar.gz
 fetch.type          git
 git.url             git://github.com/why/shoes.git
 git.branch          217b854b6def4702be2e84ec07ac53f51ec3654b
@@ -27,18 +25,15 @@ os.arch             intel
 configure           {}
 build.cmd           "rake"
 build.target        {}
-# destroot {
-#   file copy Shoes.app ${destroot}
-# }
 destroot.cmd        "cp -Rf Shoes.app/ ${destroot}/Applications/Shoes.app"
 destroot.target     
 destroot.destdir
 post-destroot {
-  # system "cp -Rf ./${worksrcdir}/Shoes.app ${destroot}/Applications/"
   system "cp /opt/local/etc/pango/pango.modules ${destroot}/Applications/Shoes.app/Contents/MacOS/"
 }
 post-activate {
-  # system "cp -f /opt/local/etc/pango/pango.modules /Applications/Shoes.app/Contents/MacOS/" 
   system "chmod -R g+rw /Applications/Shoes.app/"
 }       
 universal_variant   no
+
+

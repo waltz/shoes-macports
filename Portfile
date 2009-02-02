@@ -2,7 +2,7 @@
 
 PortSystem          1.0
 name                shoes
-version             0.r1134
+version             2
 categories          ruby
 maintainers         gmail.com:christianbryan
 description         A tiny graphics toolkit, designed for beginners.
@@ -30,10 +30,16 @@ destroot.target
 destroot.destdir
 post-destroot {
   system "cp /opt/local/etc/pango/pango.modules ${destroot}/Applications/Shoes.app/Contents/MacOS/"
+  # system "ln -s /Applications/Shoes.app/Contents/MacOS/shoes ${destroot}/opt/local/bin/shoes"
+  system "touch ${destroot}/opt/local/bin/shoes"
+  system "echo \"#!/usr/bin/env sh\" >> ${destroot}/opt/local/bin/shoes"
+  system "echo \"exec /Applications/Shoes.app/Contents/MacOS/shoes \\\$1\" >> ${destroot}/opt/local/bin/shoes"
 }
 post-activate {
   system "chmod -R g+rw /Applications/Shoes.app/"
+  system "chmod g+rw /opt/local/bin/shoes"
 }       
 universal_variant   no
-
-
+variant latest description "Most recent code from GitHub." {
+  git.branch master
+}
